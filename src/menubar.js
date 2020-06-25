@@ -38,12 +38,15 @@ class MenuBarView {
     this.options = options
 
     this.wrapper = crel("div", {class: prefix + "-wrapper"})
-    this.menu = this.wrapper.appendChild(crel("div", {class: prefix}))
-    this.menu.className = prefix
+    // this.menu = this.wrapper.appendChild(crel("div", {class: prefix}))
+    // this.menu.className = prefix
     this.spacer = null
 
     editorView.dom.parentNode.replaceChild(this.wrapper, editorView.dom)
     this.wrapper.appendChild(editorView.dom)
+
+    this.menu = this.wrapper.appendChild(crel("div", {class: prefix}))  //reordered to hide menu using css next sibling selector when editor not focused
+    this.menu.className = prefix
 
     this.maxHeight = 0
     this.widthForMaxHeight = 0
@@ -81,7 +84,7 @@ class MenuBarView {
       }
       if (this.menu.offsetHeight > this.maxHeight) {
         this.maxHeight = this.menu.offsetHeight
-        this.menu.style.minHeight = this.maxHeight + "px"
+        //this.menu.style.minHeight = this.maxHeight + "px"
       }
     }
   }
